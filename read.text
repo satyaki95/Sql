@@ -1,0 +1,401 @@
+create database satyaki;
+
+use satyaki;
+
+create table employ(roll int,name varchar(15));
+
+insert into employ value(101,'sat');
+
+insert into employ value(102,'dat');
+
+describe employ;
+
+select * from employ;
+
+show databases;
+
+drop database satyaki;
+
+create database Student;
+
+show databases;
+
+use student;
+
+create table details(Roll int,NAME varchar(15),
+CGPA float(2.2),City varchar(15));
+insert into details value(101,'Satyaki',65.23,'Naihati');
+
+select * from details;
+
+rename table details to nos;
+
+select * from nos;
+
+drop table nos;
+
+create table details(Roll int,NAME varchar(15),
+CGPA float(2.2),City varchar(15));
+
+insert into details value(101,'Satyaki',65.23,'Naihati');
+
+insert into details value(102,'bibak',56.26,'naihat'),
+(103,'Sriporna',69.32,'sodpur'),
+(104,'Shuvo',99.25,'krisnagar');
+
+insert into details value(105,'bibak2',56.26,'hat'),
+(106,'iporna',79.32,'dpur'),
+(107,'uvo',89.25,'snagar');
+
+select * from details;
+
+select Roll,NAME from details;
+
+select cgpa,name from details;
+
+select city from details;
+
+select distinct city from details;
+
+insert into details value(108,'bibak2',56.26,'hat'),
+(109,'iporna',79.32,'dpur'),
+(110,'uvo',89.25,'snagar');
+
+select city from details;
+
+
+select distinct city from details;
+
+select * from details limit 4;
+
+select * from details limit 3,4;
+
+select name from details order by name;
+
+select name,cgpa from details order by name;
+
+select name,roll from details order by name;
+
+select roll,name,cgpa from details order by name desc;
+
+select name,cgpa from details order by cgpa desc;
+
+select 5+2;
+
+select name from details where cgpa=80.00;
+
+show databases;
+
+use student;
+
+select name from details where city='Naihati';
+
+select * from details;
+
+select name from details where city='dpur';
+
+select * from details where cgpa<80.56;
+
+select roll,name,cgpa from details where roll between 102 and 109;
+
+select roll,name,cgpa from details where roll!=102;
+
+select * from details where city='snagar' or cgpa>=60.56;
+
+select * from details where city='snagar' and cgpa>=60.56;
+
+select * from details where city='Naihati' or city='naihati'
+or city='dpur' or city='hat';
+
+select * from details where city in('Naihati','naihati','dpur','hat');
+
+select * from details where city not in('Naihati','naihati','dpur','hat');
+
+select * from details where name like 's%';
+
+select * from details where name like '%a';
+
+select * from details where name like '%o%';
+
+select * from details where name like '_a%';
+
+select * from details where name like '%n_';
+
+select roll,name from details;
+
+select roll as id,name as 'first name' from details;
+
+create table teacher(
+id int,
+name varchar(15)
+);
+
+show databases;
+
+drop database teacher;
+
+select * from teacher ;
+
+drop table teacher;
+
+insert into teacher(id,name)
+value (1000,'kanti');
+
+insert into teacher (name)
+values ('kanti');
+
+create table teacher(
+id int not null auto_increment,
+name varchar(15)not null,
+salary double(10,2),
+primary key(id));
+
+
+insert into teacher (id,name,salary)
+values(1000,'akash paul',35000);
+
+
+select * from teacher;
+
+insert into teacher (name,salary)
+values('bikash paul',45000);
+
+
+insert into teacher (name)
+values('lom paul');
+
+
+insert into teacher (name,salary)
+values('rohul day',39000),
+('bollob day',39000),
+('rohit day',39000);
+
+
+update teacher set salary=32000 where id=1002;
+
+update teacher set name='Satyaki saha' where id=1005;
+
+select * from teacher;
+
+delete from teacher where id=1005;
+
+delete from teacher where id>1005;
+
+update teacher 
+set salary = salary+5000
+where salary<35000;
+
+select * from teacher;
+
+update teacher 
+set salary = salary-5000
+where salary>35000;
+
+select upper('satyaki');
+
+select lower('SATYAKI');
+
+select upper(city) from details;
+
+select upper(city) as city_new from details;
+
+select concat('wellcomre to ','my sql');
+
+select concat(name ,' is ',cgpa,' city ') from details;
+
+select concat(name ,' is ',cgpa,' city ') as student from details;
+
+select greatest(10,12,-5,6,15); 
+
+select least(10,12,-5,6,15);
+
+select pow(2,3);
+
+select log(2);
+
+select log10(2);
+
+select truncate(10.2566669555,2);
+
+select truncate(log(2),2);
+
+select rand();
+
+select exp(3); 
+
+describe details;
+
+select count(*) from details;
+
+select max(cgpa)from details;
+
+select sum(cgpa),avg(cgpa)from details;
+
+select count(*),max(cgpa),sum(cgpa),avg(cgpa) from details;
+
+select min(cgpa) from details where city='naihati';
+
+select roll,name,min(cgpa) from details where city='naihati';
+
+select * from teacher;
+
+insert into teacher (name,salary)
+values('pollob pul',4000),
+('sonam kapur',45698),
+('sharuk khan',5000000),
+('amair khan',10258),
+('salamn khan',999999);
+
+
+select avg(salary) from teacher;
+
+select * from teacher where salary>624995.500000;
+
+select * from teacher where salary>(select avg(salary)from teacher);
+
+alter table teacher add age int(5);
+
+alter table teacher change salary pay int;
+
+alter table teacher drop column age;
+
+select * from teacher;
+
+update teacher set pay=45000 where id=1000;
+
+alter table teacher add dep varchar(10);
+
+update teacher set dep='cse' where id<1003;
+
+update teacher set dep='ece' where id>=1003 and id<=1007;
+
+update teacher set dep='me' where id>=1007 and id<=1010;
+
+alter table teacher change pay salary int;
+
+select dep, sum(salary) from teacher group by dep;
+
+select dep, sum(salary) from teacher group by dep order by sum(salary) desc ;
+
+truncate table details;
+
+select * from details;
+
+create table ff(roll int not null auto_increment,
+ name varchar(15) not null,
+grnder varchar(10),age int, primary key(roll));
+
+
+insert into ff(roll,name,grnder,age)
+values(101,'Rahim','male',18);
+alter table ff change  grnder gender varchar(10);
+ 
+show databases;
+
+use student;
+
+insert into ff (name,gender,age)
+values('Farjana','female',18),('Rahim','male',18),
+('Rajim','male',18);
+
+create table gg(Reg_no int not null ,
+roll int  ,Gpa double(3,2),
+Trade varchar(15),
+primary key(Reg_no));
+
+select * from gg;
+
+select * from ff;
+
+drop table gg;
+
+insert into gg(Reg_no,roll,Gpa,Trade)
+values (20171,102,3.25,'Scince'),
+(20172,101,3.44,'Arts'),
+(20173,103,4,'Scince'),
+(20174,104,5,'Commerce');
+
+insert into gg(Reg_no,roll,Gpa,Trade)
+values (20175,105,4.25,'Scince'),
+(20176,106,3.24,'Arts'),
+(20177,107,4.82,'Scince'),
+(20178,108,5.9,'Commerce');
+
+select ff.roll,Reg_no,name,gender,Trade,Gpa from ff,gg
+where ff.roll = gg.roll;
+
+select ff.roll,gg.Reg_no,ff.name,ff.gender,gg.Trade,gg.Gpa from ff,gg
+where ff.roll = gg.roll;
+
+
+select A.roll,B.Reg_no,A.name,A.gender,B.Trade,B.Gpa from ff as A,
+gg as B
+where A.roll = B.roll;
+
+select A.roll,B.Reg_no,A.name,A.gender,B.Trade,B.Gpa
+ from ff as A join gg as B
+on A.roll = B.roll ;
+
+ insert into ff(name,gender,age)
+ values ('Sahin','male',24),
+ ('Sahina','female',22),
+ ('Sweety','female',24);
+ 
+ select ff.roll,gg.Reg_no,ff.name,ff.gender,gg.gpa,gg.trade
+ from ff inner join gg
+ on ff.roll=gg.roll;
+
+ select ff.roll,gg.Reg_no,ff.name,ff.gender,gg.gpa,gg.trade
+ from ff left join gg
+ on ff.roll=gg.roll; 
+
+select roll from ff
+union                  -- remove duplicate value between 
+select roll from gg;   -- two table ff and gg
+
+
+select roll from ff
+union all           -- not remove duplicate value gg
+select roll from gg; -- between two table ff and gg
+
+
+select * from ff;
+
+create view Sat7 as select roll,name
+from ff;   -- create virtual view
+
+select * from Sat7; 
+
+select roll from Sat7; 
+
+update Sat7 set name='Bikrom'
+where roll=107;
+
+insert into Sat7(roll,name)
+values(111,'Hasina');
+
+delete from Sat7 
+where roll=111;
+
+drop view Sat7;
+
+select current_date();
+
+select current_time();
+
+select now();
+
+select adddate('2017-9-15', interval 5 day);
+
+select adddate('2017-9-15', interval 1 month);
+
+
+select subdate('2017-9-15', interval 5 day);
+
+select subdate('2017-9-15', interval 5 month);
+
+select makedate(2017,312);
+
+select dayname('2017-09-14');
+
+select monthname('2017-09-14');
